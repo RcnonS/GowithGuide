@@ -12,7 +12,7 @@ function Homepage() {
     try {
       setLoadingStatus("loading");
       const result = await axios.get(
-        `http://localhost:4001/trips?keywords=${search}`
+        `https://go-with-guide-server.vercel.app/trips?keywords=${search}`
       );
       setLoadingStatus("completed");
       setAttraction(result.data.data);
