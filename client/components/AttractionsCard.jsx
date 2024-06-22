@@ -17,7 +17,7 @@ function AttractionCard({ attraction, searchAttraction, setSearchAttraction }) {
   };
 
   return (
-    <div>
+    <div className="attractionCardContainer">
       {attraction.map((item) => {
         return (
           <div className="attractionList" key={item.eid}>
@@ -43,12 +43,12 @@ function AttractionCard({ attraction, searchAttraction, setSearchAttraction }) {
                 อ่านต่อ
               </p>
               <p className="catagories">
-                หมวด{" "}
+                หมวด:{" "}
                 {item.tags.map((tag, index) => {
                   if (index === item.tags.length - 1) {
                     return (
                       <React.Fragment key={index}>
-                        <span>และ </span>
+                        <span className="eachCatagories-2">และ</span>
                         <span
                           className="eachCatagories"
                           onClick={() => {
@@ -83,6 +83,9 @@ function AttractionCard({ attraction, searchAttraction, setSearchAttraction }) {
                         alt=""
                         className="smallAttractionImage"
                         key={index}
+                        onClick={() => {
+                          navigate(window.open(`${photo}`));
+                        }}
                       />
                     );
                   }

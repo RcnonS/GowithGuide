@@ -1,31 +1,51 @@
+.attractionCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Adjust gap between attraction cards */
+  width: 100%;
+  max-width: 1500px;
+}
+
 .attractionList {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 50px 0px 0px 0px;
   padding: 10px;
-  width: 1400px;
+  width: 100%;
+  max-width: 1400px;
+  border-radius: 15px;
+  gap: 30px;
 }
 
 .attractionList:hover {
-  border-radius: 50px;
-  box-shadow: 0 20px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.attractionList:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .bigImage {
   width: 370px;
-  height: 300px;
-  object-fit: cover;
+  height: 300px; /* Adjust height for big image */
+  overflow: hidden;
 }
 
 .bigAttractionImage {
-  width: 370px;
-  height: 300px;
-  border-radius: 50px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 40px;
 }
 
 .attractionInfo {
-  width: 970px;
+  width: 100%;
+  height: 100%;
+  padding: 0px 10px;
   position: relative;
 }
 
@@ -43,34 +63,48 @@
   cursor: pointer;
 }
 
+.continueRead:hover {
+  transform: scale(1.1);
+}
+
 .catagories {
   margin-bottom: 15px;
-  color: #7c7c7c;
+  color: #000000;
 }
 
 .eachCatagories {
   margin-right: 7px;
   text-decoration: underline;
   cursor: pointer;
+  color: #7c7c7c;
+}
+
+.eachCatagories-2 {
+  color: #7c7c7c;
 }
 
 .smallImage {
   display: flex;
+  gap: 4%;
 }
 
 .smallAttractionImage {
   width: 100px;
   height: 100px;
-  margin-right: 40px;
   border-radius: 10px;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.smallAttractionImage:hover {
+  transform: scale(1.1);
 }
 
 .copyLinkTag {
   width: fit-content;
   position: absolute;
-  bottom: 35px;
-  right: 170px;
+  bottom: 12%;
+  right: 17%;
   rotate: 135deg;
 }
 
@@ -79,4 +113,90 @@
   border: 2px solid #2e9bdb;
   border-radius: 100%;
   cursor: pointer;
+}
+
+.copyLink:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 1024px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .smallImage {
+    display: flex;
+    gap: 20px;
+  }
+
+  .smallAttractionImage {
+    width: 70px;
+    height: 70px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 0px;
+    cursor: pointer;
+  }
+
+  .copyLinkTag {
+    width: fit-content;
+    position: absolute;
+    bottom: 7%;
+    right: 10%;
+    rotate: 135deg;
+  }
+
+  .copyLink {
+    width: 80%;
+    border: 2px solid #2e9bdb;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .attractionList {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 400px; /* Maximum width for attraction card */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin-bottom: 20px; /* Adjust margin between attraction cards */
+  }
+
+  .bigImage {
+    width: 100%;
+    height: 100%; /* Adjust height for big image */
+    overflow: hidden;
+  }
+
+  .attractionInfo {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .smallImage {
+    display: flex;
+    width: 100%;
+    height: 80px;
+    justify-content: space-evenly;
+  }
+
+  .smallAttractionImage {
+    width: 25%;
+    height: 80px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 0px;
+    cursor: pointer;
+  }
+
+  .copyLinkTag {
+    display: none;
+  }
 }

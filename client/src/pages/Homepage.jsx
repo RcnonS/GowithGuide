@@ -41,6 +41,11 @@ function Homepage() {
           }}
         />
       </div>
+      <div className="categoryFilter">
+        <p className="filter">
+          หมวด : <span className="filterBox">{searchAttraction}</span>
+        </p>
+      </div>
       {loadingStatus === "loading" && <h1>Loading...</h1>}
       {loadingStatus === "failed" && <h1>Fail to load data...</h1>}
       {loadingStatus === "completed" && (
