@@ -6,6 +6,8 @@ import AttractionCard from "../../components/AttractionsCard";
 function Homepage() {
   const [attraction, setAttraction] = useState([]);
   const [searchAttraction, setSearchAttraction] = useState("");
+  const [searchClickAttraction, setSearchClickAttraction] = useState("");
+  const [searchFilter, setSearchFilter] = useState([]);
   const [loadingStatus, setLoadingStatus] = useState(null);
 
   const getAttraction = async (search) => {
@@ -22,9 +24,17 @@ function Homepage() {
     }
   };
 
+  const handleDelete = (index) => {
+    // const updatedFilter = [...searchFilter];
+    // console.log({ beforeU: updatedFilter });
+    // updatedFilter.splice(index, 1);
+    // setSearchFilter(updatedFilter);
+  };
+
   useEffect(() => {
-    getAttraction(searchAttraction);
-  }, [searchAttraction]);
+    const search = searchAttraction + searchClickAttraction;
+    getAttraction(search);
+  }, [searchAttraction, searchClickAttraction]);
 
   return (
     <div className="homepage">
@@ -42,17 +52,27 @@ function Homepage() {
         />
       </div>
       <div className="categoryFilter">
-        <p className="filter">
-          หมวด : <span className="filterBox">{searchAttraction}</span>
-        </p>
+        หมวด :
+        {searchFilter.map((item, index) => {
+          return item.length !== 0 ? (
+            <div className="filterBox" key={index}>
+              <p className="filterBox-tag">{item}</p>
+              <p className="deleteTag" onClick={handleDelete(index)}>
+                x
+              </p>
+            </div>
+          ) : null;
+        })}
       </div>
       {loadingStatus === "loading" && <h1>Loading...</h1>}
       {loadingStatus === "failed" && <h1>Fail to load data...</h1>}
       {loadingStatus === "completed" && (
         <AttractionCard
           attraction={attraction}
-          searchAttraction={searchAttraction}
-          setSearchAttraction={setSearchAttraction}
+          searchClickAttraction={searchClickAttraction}
+          setSearchClickAttraction={setSearchClickAttraction}
+          searchFilter={searchFilter}
+          setSearchFilter={setSearchFilter}
         />
       )}
     </div>

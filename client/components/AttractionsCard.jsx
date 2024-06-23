@@ -4,15 +4,25 @@ import { useNavigate } from "react-router-dom";
 import LimitedChar from "./LimitedChar";
 import linkIcon from "/src/svg/link_icon.svg";
 
-function AttractionCard({ attraction, searchAttraction, setSearchAttraction }) {
+function AttractionCard({
+  attraction,
+  searchClickAttraction,
+  setSearchClickAttraction,
+  searchFilter,
+  setSearchFilter,
+}) {
   const navigate = useNavigate();
 
   const handleClick = (tag) => {
-    if (searchAttraction !== "") {
-      let clicks = searchAttraction + " " + tag;
-      setSearchAttraction(clicks);
-    } else {
-      setSearchAttraction(tag);
+    if (searchClickAttraction !== "" && !searchFilter.includes(tag)) {
+      const newClicks = searchClickAttraction + " " + tag;
+      setSearchClickAttraction(newClicks);
+
+      const uniqueTags = Array.from(new Set(newClicks.split(" ")));
+      setSearchFilter(uniqueTags);
+    } else if (searchClickAttraction === "") {
+      setSearchClickAttraction(tag);
+      setSearchFilter([tag]);
     }
   };
 
@@ -48,7 +58,7 @@ function AttractionCard({ attraction, searchAttraction, setSearchAttraction }) {
                   if (index === item.tags.length - 1) {
                     return (
                       <React.Fragment key={index}>
-                        <span className="eachCatagories-2">และ</span>
+                        <span className="eachCatagories-2">และ </span>
                         <span
                           className="eachCatagories"
                           onClick={() => {
